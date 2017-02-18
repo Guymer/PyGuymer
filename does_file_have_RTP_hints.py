@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def does_file_have_RTP_hints(fname):
+def does_file_have_RTP_hints(fname = "missing"):
     # Import modules ...
     import json
     import subprocess
