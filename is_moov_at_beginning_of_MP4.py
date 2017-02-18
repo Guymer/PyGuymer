@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def is_moov_at_beginning_of_MP4(fname):
+def is_moov_at_beginning_of_MP4(fname = "missing"):
     # NOTE: The following websites have some very useful information on how to
     #       parse MP4 files - the first just forgot to say that integers are
     #       big-endian.
