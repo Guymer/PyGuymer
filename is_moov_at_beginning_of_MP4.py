@@ -15,7 +15,7 @@ def is_moov_at_beginning_of_MP4(fname):
     # Open MP4 read-only ...
     with open(fname, "rb") as fobj:
         # Set triggers ...
-        found = False
+        foundFTYP = False
         foundMDAT = False
         foundMOOV = False
 
@@ -37,11 +37,11 @@ def is_moov_at_beginning_of_MP4(fname):
                 return
 
             # Check that it is a MP4 file ...
-            if found == False and name != "ftyp":
+            if foundFTYP == False and name != u"ftyp":
                 print u"ERROR: \"{0:s}\" is not a MP4".format(fname)
                 return
             else:
-                found = True
+                foundFTYP = True
 
             # Check if it is the MDAT atom ...
             if name == u"mdat":

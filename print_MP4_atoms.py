@@ -18,7 +18,7 @@ def print_MP4_atoms(fname):
     # Open MP4 read-only ...
     with open(fname, "rb") as fobj:
         # Set trigger ...
-        found = False
+        foundFTYP = False
 
         # Loop over entire contents of MP4 ...
         while True:
@@ -38,11 +38,11 @@ def print_MP4_atoms(fname):
                 return
 
             # Check that it is a MP4 file ...
-            if found == False and name != "ftyp":
+            if foundFTYP == False and name != u"ftyp":
                 print u"ERROR: \"{0:s}\" is not a MP4".format(fname)
                 return
             else:
-                found = True
+                foundFTYP = True
 
             # Check the length ...
             if arr[0] == 0:
