@@ -26,7 +26,7 @@ def print_MP4_atoms(fname):
             arr = numpy.fromstring(fobj.read(4), dtype = numpy.uint32).byteswap()
             off = 4
             if arr.size != 1:
-                return
+                break
 
             # Extract atom name ...
             name = fobj.read(4)
@@ -52,7 +52,7 @@ def print_MP4_atoms(fname):
                 print u"{0:s} is the remainder of the file".format(name)
 
                 # Stop looping ...
-                return
+                break
             elif arr[0] == 1:
                 # NOTE: This atom has 64-bit sizes.
 
