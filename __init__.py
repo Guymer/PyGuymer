@@ -7,5 +7,6 @@ the years.
 
 # Load sub-functions ...
 from .convert_bytes_to_pretty_bytes import convert_bytes_to_pretty_bytes
+from .find_program_version import find_program_version
 from .is_moov_at_beginning_of_MP4 import is_moov_at_beginning_of_MP4
 from .print_MP4_atoms import print_MP4_atoms
