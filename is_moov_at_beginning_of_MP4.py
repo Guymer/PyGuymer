@@ -53,7 +53,7 @@ def is_moov_at_beginning_of_MP4(fname = "missing"):
                 else:
                     return True
 
-            # Check for length ...
+            # Check the length ...
             if arr[0] == 0:
                 # NOTE: This atom runs until EOF.
 
