@@ -29,7 +29,7 @@ def find_program_version(prog = "python"):
         )
         stdout, stderr = proc.communicate()
         if proc.returncode != 0:
-            raise RuntimeError("\"pkg\" command failed")
+            raise Exception(u"\"pkg\" command failed")
     else:
         # Check if it is MacPorts ...
         proc = subprocess.Popen(
@@ -55,7 +55,7 @@ def find_program_version(prog = "python"):
             )
             stdout, stderr = proc.communicate()
             if proc.returncode != 0:
-                raise RuntimeError("\"port\" command failed")
+                raise Exception(u"\"port\" command failed")
         else:
             # Check if it is OpenSUSE ...
             proc = subprocess.Popen(
@@ -81,9 +81,9 @@ def find_program_version(prog = "python"):
                 )
                 stdout, stderr = proc.communicate()
                 if proc.returncode != 0:
-                    raise RuntimeError("\"zypper\" command failed")
+                    raise Exception(u"\"zypper\" command failed")
             else:
-                raise RuntimeError("neither \"pkg\" nor \"port\" nor \"zypper\" have been found")
+                raise Exception(u"neither \"pkg\" nor \"port\" nor \"zypper\" have been found")
 
     # Find clean string ...
     for line in stdout.splitlines():

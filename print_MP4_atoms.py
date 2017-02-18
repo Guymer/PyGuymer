@@ -34,13 +34,11 @@ def print_MP4_atoms(fname = "missing"):
 
             # Check that it matches the pattern ...
             if re.match(r"[a-z][a-z][a-z][a-z]", name) is None:
-                print u"ERROR: \"{0:s}\" is not an atom name in \"{1:s}\"".format(name, fname)
-                return
+                raise Exception(u"\"{0:s}\" is not an atom name in \"{1:s}\"".format(name, fname))
 
             # Check that it is a MP4 file ...
             if foundFTYP == False and name != u"ftyp":
-                print u"ERROR: \"{0:s}\" is not a MP4".format(fname)
-                return
+                raise Exception(u"\"{0:s}\" is not a MP4".format(fname))
             else:
                 foundFTYP = True
 
@@ -60,8 +58,7 @@ def print_MP4_atoms(fname = "missing"):
                 arr = numpy.fromstring(fobj.read(8), dtype = numpy.uint64).byteswap()
                 off += 8
                 if arr.size != 1:
-                    print u"ERROR: failed to read 64-bit size in \"{0:s}\"".format(fname)
-                    return
+                    raise Exception(u"failed to read 64-bit size in \"{0:s}\"".format(fname))
 
             # Print summary ...
             size, units = convert_bytes_to_pretty_bytes(arr[0])
