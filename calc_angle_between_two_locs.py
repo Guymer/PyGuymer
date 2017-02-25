@@ -3,7 +3,7 @@
 def calc_angle_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
     # NOTE: math.atan() has been replaced with math.atan2() where possible.
-    
+
     # Import modules ...
     import math
 
