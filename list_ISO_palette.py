@@ -24,6 +24,10 @@ def list_ISO_palette(fname, usr_track = None):
     if proc.returncode != 0:
         raise Exception(u"\"lsdvd\" command failed")
 
+    # Clean up ...
+    # NOTE: "lsdvd" sometimes returns invalid XML as it does not: escape characters; or remove invalid characters.
+    stdout = unicode(stdout, "utf-8", "ignore").replace(u"&", u"&amp;")
+
     # Loop over all tracks ...
     for track in xml.etree.ElementTree.fromstring(stdout).findall("track"):
         # Extract track ID ...
