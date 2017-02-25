@@ -36,7 +36,7 @@ def is_moov_at_beginning_of_MP4(fname = "missing"):
                 raise Exception(u"\"{0:s}\" is not an atom name in \"{1:s}\"".format(name, fname))
 
             # Check that it is a MP4 file ...
-            if foundFTYP == False and name != u"ftyp":
+            if not foundFTYP and name != u"ftyp":
                 raise Exception(u"\"{0:s}\" is not a MP4".format(fname))
             else:
                 foundFTYP = True
