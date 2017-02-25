@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def does_file_have_RTP_hints(fname = "missing"):
+def does_media_have_RTP_hints(fname = "missing"):
     # Import modules ...
     import json
     import subprocess
@@ -21,9 +21,6 @@ def does_file_have_RTP_hints(fname = "missing"):
     if proc.returncode != 0:
         raise Exception(u"\"ffprobe\" command failed")
 
-    # Set default answer ...
-    ans = False
-
     # Loop over streams ...
     for stream in json.loads(stdout)[u"streams"]:
         # Skip stream if it is not data ...
@@ -32,7 +29,8 @@ def does_file_have_RTP_hints(fname = "missing"):
 
         # Check if this data stream is RTP ...
         if stream[u"codec_tag_string"].strip().lower() == u"rtp":
-            ans = True
+            # Return answer ...
+            return True
 
     # Return answer ...
-    return ans
+    return False

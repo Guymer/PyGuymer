@@ -10,7 +10,7 @@ from .calc_angle_between_two_locs import calc_angle_between_two_locs
 from .calc_dist_between_two_locs import calc_dist_between_two_locs
 from .calc_loc_from_loc_and_bearing_and_dist import calc_loc_from_loc_and_bearing_and_dist
 from .convert_bytes_to_pretty_bytes import convert_bytes_to_pretty_bytes
-from .does_file_have_RTP_hints import does_file_have_RTP_hints
+from .does_media_have_RTP_hints import does_media_have_RTP_hints
 from .find_middle_of_great_circle import find_middle_of_great_circle
 from .find_point_on_great_circle import find_point_on_great_circle
 from .find_program_version import find_program_version
