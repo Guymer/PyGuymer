@@ -47,7 +47,12 @@ def return_video_frame_rate(fname):
             raise Exception(u"\"avg_frame_rate\" did not contain a \"/\"")
 
         # Return frame rate ...
-        return float(stream[u"avg_frame_rate"].split("/")[0]) / float(stream[u"avg_frame_rate"].split("/")[1])
+        a = stream[u"avg_frame_rate"].split("/")[0]                             # [#]
+        b = stream[u"avg_frame_rate"].split("/")[1]                             # [s]
+        fps = -1.0                                                              # [Hz]
+        if int(b) != 0:
+            fps = float(a) / float(b)                                           # [Hz]
+        return fps
 
     # Return error ...
     return -1.0

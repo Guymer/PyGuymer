@@ -37,4 +37,8 @@ def return_media_duration(fname):
             raise Exception(u"\"ffprobe\" command failed")
 
     # Return duration ...
-    return float(json.loads(stdout)[u"format"][u"duration"])                    # [s]
+    format = json.loads(stdout)[u"format"]
+    dur = -1.0                                                                  # [s]
+    if u"duration" in format:
+        dur = float(format[u"duration"])                                        # [s]
+    return dur

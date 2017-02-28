@@ -44,7 +44,10 @@ def list_media_audio_streams(fname):
 
         # Print information ...
         ia = int(stream[u"index"])
-        langcode = stream[u"tags"][u"language"]
+        langcode = u"und"
+        if u"tags" in stream:
+            if u"language" in stream[u"tags"]:
+                langcode = stream[u"tags"][u"language"]
         form = stream[u"codec_name"].upper()
         frequency = int(stream[u"sample_rate"])                                 # [Hz]
         channels = int(stream[u"channels"])

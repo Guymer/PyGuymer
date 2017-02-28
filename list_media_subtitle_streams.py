@@ -44,5 +44,8 @@ def list_media_subtitle_streams(fname):
 
         # Print information ...
         ist = int(stream[u"index"])
-        langcode = stream[u"tags"][u"language"]
+        langcode = u"und"
+        if u"tags" in stream:
+            if u"language" in stream[u"tags"]:
+                langcode = stream[u"tags"][u"language"]
         print "Stream {0:2d} is in \"{1:3s}\".".format(ist, langcode)

@@ -44,9 +44,16 @@ def list_media_video_streams(fname):
 
         # Print information ...
         iv = int(stream[u"index"])
-        langcode = stream[u"tags"][u"language"]
+        langcode = u"und"
+        if u"tags" in stream:
+            if u"language" in stream[u"tags"]:
+                langcode = stream[u"tags"][u"language"]
         form = stream[u"codec_name"].upper()
         width = int(stream[u"width"])                                           # [px]
         height = int(stream[u"height"])                                         # [px]
-        fps = float(stream[u"avg_frame_rate"].split("/")[0]) / float(stream[u"avg_frame_rate"].split("/")[1])
+        a = stream[u"avg_frame_rate"].split("/")[0]                             # [#]
+        b = stream[u"avg_frame_rate"].split("/")[1]                             # [s]
+        fps = -1.0                                                              # [Hz]
+        if int(b) != 0:
+            fps = float(a) / float(b)                                           # [Hz]
         print "Stream {0:2d} is in \"{1:3s}\" using {2:s} at {3:,d}x{4:,d} at {5:.1f} FPS.".format(iv, langcode, form, width, height, fps)
