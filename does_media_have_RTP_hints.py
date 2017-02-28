@@ -19,7 +19,22 @@ def does_media_have_RTP_hints(fname = "missing"):
     )
     stdout, stderr = proc.communicate()
     if proc.returncode != 0:
-        raise Exception(u"\"ffprobe\" command failed")
+        # HACK: Fallback and attempt to load it as a raw M-JPEG stream.
+        proc = subprocess.Popen(
+            [
+                "ffprobe",
+                "-loglevel", "quiet",
+                "-print_format", "json",
+                "-show_streams",
+                "-f", "mjpeg",
+                fname
+            ],
+            stderr = subprocess.PIPE,
+            stdout = subprocess.PIPE
+        )
+        stdout, stderr = proc.communicate()
+        if proc.returncode != 0:
+            raise Exception(u"\"ffprobe\" command failed")
 
     # Loop over streams ...
     for stream in json.loads(stdout)[u"streams"]:
