@@ -25,6 +25,7 @@ from .list_media_audio_streams import list_media_audio_streams
 from .list_media_subtitle_streams import list_media_subtitle_streams
 from .list_media_video_streams import list_media_video_streams
 from .make_path_safe import make_path_safe
+from .parse_human_readable_number import parse_human_readable_number
 from .print_MP4_atoms import print_MP4_atoms
 from .remove_almost_empty_directories import remove_almost_empty_directories
 from .return_MP4_video_level import return_MP4_video_level
