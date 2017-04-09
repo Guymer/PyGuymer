@@ -40,8 +40,7 @@ def return_dict_of_ISO_subtitle_streams(fname, usr_track = -1):
         # Loop over all subtitle channels in this track ...
         for subp in track.findall("subp"):
             # Append information ...
-            ans[subp.find("ix").text] = {
-                "ist_id" : subp.find("streamid").text,
+            ans[subp.find("streamid").text] = {
                 "content" : subp.find("content").text,
                 "langcode" : subp.find("langcode").text,
                 "language" : subp.find("language").text

@@ -28,4 +28,4 @@ def list_ISO_audio_streams(fname, usr_track = None):
 
         # Loop over audio streams ...
         for stream in sorted(info.keys()):
-            print "Stream {0:s} ({1:s}) is \"{2:s}\" content in \"{3:2s} ({4:s})\" using {5:s} at {6:,d} Hz with {7:d} channels.".format(stream, info[stream][u"ia_id"], info[stream][u"content"], info[stream][u"langcode"], info[stream][u"language"], info[stream][u"form"], info[stream][u"frequency"], info[stream][u"channels"])
+            print "Stream {0:s} is \"{1:s}\" content in \"{2:2s} ({3:s})\" using {4:s} at {5:,d} Hz with {6:d} channels.".format(stream, info[stream][u"content"], info[stream][u"langcode"], info[stream][u"language"], info[stream][u"form"], info[stream][u"frequency"], info[stream][u"channels"])

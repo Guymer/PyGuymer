@@ -40,8 +40,7 @@ def return_dict_of_ISO_audio_streams(fname, usr_track = -1):
         # Loop over all audio channels in this track ...
         for audio in track.findall("audio"):
             # Append information ...
-            ans[audio.find("ix").text] = {
-                "ia_id" : audio.find("streamid").text,
+            ans[audio.find("streamid").text] = {
                 "content" : audio.find("content").text,
                 "langcode" : audio.find("langcode").text,
                 "language" : audio.find("language").text,

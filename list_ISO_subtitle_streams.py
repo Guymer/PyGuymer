@@ -28,4 +28,4 @@ def list_ISO_subtitle_streams(fname, usr_track = None):
 
         # Loop over subtitle streams ...
         for stream in sorted(info.keys()):
-            print "Stream {0:s} ({1:s}) is \"{2:s}\" content in \"{3:2s} ({4:s})\".".format(stream, info[stream][u"ist_id"], info[stream][u"content"], info[stream][u"langcode"], info[stream][u"language"])
+            print "Stream {0:s} is \"{1:s}\" content in \"{2:2s} ({3:s})\".".format(stream, info[stream][u"content"], info[stream][u"langcode"], info[stream][u"language"])
