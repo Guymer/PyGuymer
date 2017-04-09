@@ -5,50 +5,27 @@ def list_ISO_subtitle_streams(fname, usr_track = None):
     import subprocess
     import xml.etree.ElementTree
 
-    # Find track info ...
-    proc = subprocess.Popen(
-        [
-            "lsdvd",
-            "-x",
-            "-Ox",
-            fname
-        ],
-        stderr = subprocess.PIPE,
-        stdout = subprocess.PIPE
-    )
-    stdout, stderr = proc.communicate()
-    if proc.returncode != 0:
-        raise Exception(u"\"lsdvd\" command failed")
+    # Load sub-functions ...
+    from .return_dict_of_ISO_subtitle_streams import return_dict_of_ISO_subtitle_streams
+    from .return_dict_of_ISO_tracks import return_dict_of_ISO_tracks
 
-    # Clean up ...
-    # NOTE: "lsdvd" sometimes returns invalid XML as it does not: escape characters; or remove invalid characters.
-    stdout = unicode(stdout, "utf-8", "ignore").replace(u"&", u"&amp;")
+    # Check input ...
+    if not fname.endswith(".iso"):
+        raise Exception("an ISO was not passed")
 
-    # Loop over all tracks ...
-    for track in xml.etree.ElementTree.fromstring(stdout).findall("track"):
-        # Extract track ID ...
-        it = int(track.find("ix").text)
+    # Check if the user has chosen a track ...
+    if usr_track is None:
+        # Obtain track information ...
+        info = return_dict_of_ISO_tracks(fname)
 
-        # Check if the user has chosen a track ...
-        if usr_track is None:
-            # Print length ...
-            length = float(track.find("length").text) / 3600.0e0                # [hr]
-            print "Track {0:2d} is {1:4.2f} hours long.".format(it, length)
-            continue
-
-        # Skip if this track is not the chosen one ...
-        if it != int(usr_track):
-            continue
-
-        # Loop over all subtitle channels ...
-        for subp in track.findall("subp"):
+        # Loop over tracks ...
+        for track in sorted(info.keys()):
             # Print information ...
-            ist = int(subp.find("ix").text)
-            ist_id = subp.find("streamid").text
-            content = subp.find("content").text
-            langcode = subp.find("langcode").text
-            language = subp.find("language").text
-            print "Stream {0:2d} ({1:s}) is \"{2:s}\" content in \"{3:2s} ({4:s})\".".format(ist, ist_id, content, langcode, language)
+            print "Track {0:s} is {1:4.2f} hours long.".format(track, info[track][u"length"] / 3600.0)
+    else:
+        # Obtain subtitle stream information ...
+        info = return_dict_of_ISO_subtitle_streams(fname, usr_track)
 
-        # Stop looping ...
-        break
+        # Loop over subtitle streams ...
+        for stream in sorted(info.keys()):
+            print "Stream {0:s} ({1:s}) is \"{2:s}\" content in \"{3:2s} ({4:s})\".".format(stream, info[stream][u"ist_id"], info[stream][u"content"], info[stream][u"langcode"], info[stream][u"language"])
