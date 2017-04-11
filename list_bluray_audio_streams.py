@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
-def list_bluray_audio_streams(fname):
+def list_bluray_audio_streams(fname, usr_playlist):
     # Import modules ...
     import json
     import subprocess
+
+    # Check input ...
+    if usr_playlist == -1:
+        raise Exception("no playlist was requested")
 
     # Find stream info ...
     proc = subprocess.Popen(
@@ -12,6 +16,7 @@ def list_bluray_audio_streams(fname):
             "-loglevel", "quiet",
             "-print_format", "json",
             "-show_streams",
+            "-playlist", "{0:d}".format(usr_playlist),
             "bluray:{0:s}".format(fname)
         ],
         stderr = subprocess.PIPE,
