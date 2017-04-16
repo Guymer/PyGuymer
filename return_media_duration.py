@@ -10,7 +10,7 @@ def return_media_duration(fname):
         [
             u"ffprobe",
             u"-loglevel", u"quiet",
-            u"-probesize", u"3G",
+            u"-probesize", u"2G",
             u"-analyzeduration", u"1800M",
             u"-print_format", u"json",
             u"-show_format",
@@ -26,7 +26,7 @@ def return_media_duration(fname):
             [
                 u"ffprobe",
                 u"-loglevel", u"quiet",
-                u"-probesize", u"3G",
+                u"-probesize", u"2G",
                 u"-analyzeduration", u"1800M",
                 u"-print_format", u"json",
                 u"-show_format",
@@ -41,8 +41,8 @@ def return_media_duration(fname):
             raise Exception(u"\"ffprobe\" command failed")
 
     # Return duration ...
-    format = json.loads(stdout)[u"format"]
+    form = json.loads(stdout)[u"format"]
     dur = -1.0                                                                  # [s]
-    if u"duration" in format:
-        dur = float(format[u"duration"])                                        # [s]
+    if u"duration" in form:
+        dur = float(form[u"duration"])                                          # [s]
     return dur
