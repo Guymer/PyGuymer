@@ -2,7 +2,7 @@
 
 def return_dict_of_media_video_streams(fname, playlist = None):
     # Check input ...
-    if fname.startswith(u"bluray:") and playlist == None:
+    if fname.startswith(u"bluray:") and playlist is None:
         raise Exception("a Blu-ray was specified but no playlist was supplied")
 
     # Import modules ...
