@@ -8,10 +8,12 @@ def return_MP4_video_profile(fname):
     # Find stream info ...
     proc = subprocess.Popen(
         [
-            "ffprobe",
-            "-loglevel", "quiet",
-            "-print_format", "json",
-            "-show_streams",
+            u"ffprobe",
+            u"-loglevel", u"quiet",
+            u"-probesize", u"1G",
+            u"-analyzeduration", u"1800M",
+            u"-print_format", u"json",
+            u"-show_streams",
             fname
         ],
         stderr = subprocess.PIPE,

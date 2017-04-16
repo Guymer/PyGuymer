@@ -8,10 +8,12 @@ def return_media_duration(fname):
     # Find format info ...
     proc = subprocess.Popen(
         [
-            "ffprobe",
-            "-loglevel", "quiet",
-            "-print_format", "json",
-            "-show_format",
+            u"ffprobe",
+            u"-loglevel", u"quiet",
+            u"-probesize", u"1G",
+            u"-analyzeduration", u"1800M",
+            u"-print_format", u"json",
+            u"-show_format",
             fname
         ],
         stderr = subprocess.PIPE,
@@ -22,11 +24,13 @@ def return_media_duration(fname):
         # HACK: Fallback and attempt to load it as a raw M-JPEG stream.
         proc = subprocess.Popen(
             [
-                "ffprobe",
-                "-loglevel", "quiet",
-                "-print_format", "json",
-                "-show_format",
-                "-f", "mjpeg",
+                u"ffprobe",
+                u"-loglevel", u"quiet",
+                u"-probesize", u"1G",
+                u"-analyzeduration", u"1800M",
+                u"-print_format", u"json",
+                u"-show_format",
+                u"-f", u"mjpeg",
                 fname
             ],
             stderr = subprocess.PIPE,

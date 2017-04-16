@@ -36,5 +36,5 @@ def return_dict_of_ISO_tracks(fname):
             u"length" : float(track.find(u"length").text)                       # [s]
         }
 
-    # Return list ...
+    # Return dictionary ...
     return ans

@@ -49,5 +49,5 @@ def return_dict_of_ISO_audio_streams(fname, usr_track = -1):
                 "channels" : int(audio.find("channels").text)
             }
 
-        # Return answer ...
+        # Return dictionary ...
         return ans

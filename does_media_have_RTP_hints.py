@@ -8,10 +8,12 @@ def does_media_have_RTP_hints(fname = "missing"):
     # Find stream info ...
     proc = subprocess.Popen(
         [
-            "ffprobe",
-            "-loglevel", "quiet",
-            "-print_format", "json",
-            "-show_streams",
+            u"ffprobe",
+            u"-probesize", u"1G",
+            u"-analyzeduration", u"1800M",
+            u"-loglevel", u"quiet",
+            u"-print_format", u"json",
+            u"-show_streams",
             fname
         ],
         stderr = subprocess.PIPE,
@@ -22,11 +24,13 @@ def does_media_have_RTP_hints(fname = "missing"):
         # HACK: Fallback and attempt to load it as a raw M-JPEG stream.
         proc = subprocess.Popen(
             [
-                "ffprobe",
-                "-loglevel", "quiet",
-                "-print_format", "json",
-                "-show_streams",
-                "-f", "mjpeg",
+                u"ffprobe",
+                u"-loglevel", u"quiet",
+                u"-probesize", u"1G",
+                u"-analyzeduration", u"1800M",
+                u"-print_format", u"json",
+                u"-show_streams",
+                u"-f", u"mjpeg",
                 fname
             ],
             stderr = subprocess.PIPE,

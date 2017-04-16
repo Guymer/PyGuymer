@@ -46,5 +46,5 @@ def return_dict_of_ISO_subtitle_streams(fname, usr_track = -1):
                 "language" : subp.find("language").text
             }
 
-        # Return answer ...
+        # Return dictionary ...
         return ans
