@@ -18,7 +18,7 @@ def return_dict_of_media_audio_streams(fname, playlist = None):
             [
                 u"ffprobe",
                 u"-loglevel", u"quiet",
-                u"-probesize", u"1G",
+                u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-print_format", u"json",
                 u"-show_streams",
@@ -37,7 +37,7 @@ def return_dict_of_media_audio_streams(fname, playlist = None):
             [
                 u"ffprobe",
                 u"-loglevel", u"quiet",
-                u"-probesize", u"1G",
+                u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-print_format", u"json",
                 u"-show_streams",
@@ -53,7 +53,7 @@ def return_dict_of_media_audio_streams(fname, playlist = None):
                 [
                     u"ffprobe",
                     u"-loglevel", u"quiet",
-                    u"-probesize", u"1G",
+                    u"-probesize", u"3G",
                     u"-analyzeduration", u"1800M",
                     u"-print_format", u"json",
                     u"-show_streams",

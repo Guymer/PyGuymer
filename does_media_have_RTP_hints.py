@@ -9,7 +9,7 @@ def does_media_have_RTP_hints(fname = "missing"):
     proc = subprocess.Popen(
         [
             u"ffprobe",
-            u"-probesize", u"1G",
+            u"-probesize", u"3G",
             u"-analyzeduration", u"1800M",
             u"-loglevel", u"quiet",
             u"-print_format", u"json",
@@ -26,7 +26,7 @@ def does_media_have_RTP_hints(fname = "missing"):
             [
                 u"ffprobe",
                 u"-loglevel", u"quiet",
-                u"-probesize", u"1G",
+                u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-print_format", u"json",
                 u"-show_streams",

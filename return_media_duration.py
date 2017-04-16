@@ -10,7 +10,7 @@ def return_media_duration(fname):
         [
             u"ffprobe",
             u"-loglevel", u"quiet",
-            u"-probesize", u"1G",
+            u"-probesize", u"3G",
             u"-analyzeduration", u"1800M",
             u"-print_format", u"json",
             u"-show_format",
@@ -26,7 +26,7 @@ def return_media_duration(fname):
             [
                 u"ffprobe",
                 u"-loglevel", u"quiet",
-                u"-probesize", u"1G",
+                u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-print_format", u"json",
                 u"-show_format",
