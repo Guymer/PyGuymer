@@ -11,11 +11,13 @@ def return_subtitle_extent(fname, playlist = None, subtitle = 0):
 
     # Load sub-functions ...
     from .return_media_duration import return_media_duration
+    from .return_video_frame_rate import return_video_frame_rate
     from .return_video_height import return_video_height
     from .return_video_width import return_video_width
 
     # Find out information about video ...
     duration = return_media_duration(fname, playlist = playlist)                # [s]
+    fps = return_video_frame_rate(fname, playlist = playlist)                   # [Hz]
     height = return_video_height(fname, playlist = playlist)                    # [px]
     width = return_video_width(fname, playlist = playlist)                      # [px]
 
@@ -26,7 +28,7 @@ def return_subtitle_extent(fname, playlist = None, subtitle = 0):
                 u"ffmpeg",
                 u"-hide_banner",
                 u"-f", u"lavfi",
-                u"-i", u"color=color=black:size={0:d}x{1:d}:rate=24:duration={2:f},format=yuv420p".format(width, height, duration),
+                u"-i", u"color=color=black:size={0:d}x{1:d}:rate={2:f}:duration={3:f},format=yuv420p".format(width, height, fps, duration),
                 u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-playlist", u"{0:d}".format(playlist),
@@ -51,7 +53,7 @@ def return_subtitle_extent(fname, playlist = None, subtitle = 0):
                 u"ffmpeg",
                 u"-hide_banner",
                 u"-f", u"lavfi",
-                u"-i", u"color=color=black:size={0:d}x{1:d}:rate=24:duration={2:f},format=yuv420p".format(width, height, duration),
+                u"-i", u"color=color=black:size={0:d}x{1:d}:rate={2:f}:duration={3:f},format=yuv420p".format(width, height, fps, duration),
                 u"-probesize", u"3G",
                 u"-analyzeduration", u"1800M",
                 u"-i", fname,
@@ -74,7 +76,7 @@ def return_subtitle_extent(fname, playlist = None, subtitle = 0):
                     u"ffmpeg",
                     u"-hide_banner",
                     u"-f", u"lavfi",
-                    u"-i", u"color=color=black:size={0:d}x{1:d}:rate=24:duration={2:f},format=yuv420p".format(width, height, duration),
+                    u"-i", u"color=color=black:size={0:d}x{1:d}:rate={2:f}:duration={3:f},format=yuv420p".format(width, height, fps, duration),
                     u"-probesize", u"3G",
                     u"-analyzeduration", u"1800M",
                     u"-f", u"mjpeg",
