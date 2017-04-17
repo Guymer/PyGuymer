@@ -35,6 +35,7 @@ from .return_dict_of_media_video_streams import return_dict_of_media_video_strea
 from .return_file_list import return_file_list
 from .return_file_list_with_warnings import return_file_list_with_warnings
 from .return_media_duration import return_media_duration
+from .return_subtitle_extent import return_subtitle_extent
 from .return_video_display_aspect_ratio import return_video_display_aspect_ratio
 from .return_video_frame_rate import return_video_frame_rate
 from .return_video_height import return_video_height
