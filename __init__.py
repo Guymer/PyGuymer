@@ -21,6 +21,7 @@ from .generate_password import generate_password
 from .generate_random_stub import generate_random_stub
 from .is_moov_at_beginning_of_MP4 import is_moov_at_beginning_of_MP4
 from .make_path_safe import make_path_safe
+from .paeth_filter import paeth_filter
 from .print_MP4_atoms import print_MP4_atoms
 from .remove_almost_empty_directories import remove_almost_empty_directories
 from .return_ISO_palette import return_ISO_palette
@@ -43,4 +44,7 @@ from .return_video_height import return_video_height
 from .return_video_pixel_aspect_ratio import return_video_pixel_aspect_ratio
 from .return_video_source_aspect_ratio import return_video_source_aspect_ratio
 from .return_video_width import return_video_width
+from .save_array_as_image import save_array_as_image
+from .save_array_as_PPM import save_array_as_PPM
+from .save_array_as_PNG import save_array_as_PNG
 from .yuv2rgb import yuv2rgb
