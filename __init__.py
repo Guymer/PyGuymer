@@ -13,6 +13,7 @@ from .convert_bytes_to_pretty_bytes import convert_bytes_to_pretty_bytes
 from .convert_pretty_bytes_to_bytes import convert_pretty_bytes_to_bytes
 from .does_media_have_RTP_hints import does_media_have_RTP_hints
 from .find_instances_of_a_file import find_instances_of_a_file
+from .find_integer_divisors import find_integer_divisors
 from .find_middle_of_great_circle import find_middle_of_great_circle
 from .find_point_on_great_circle import find_point_on_great_circle
 from .find_program_version import find_program_version
@@ -39,6 +40,7 @@ from .return_subtitle_extent import return_subtitle_extent
 from .return_video_display_aspect_ratio import return_video_display_aspect_ratio
 from .return_video_frame_rate import return_video_frame_rate
 from .return_video_height import return_video_height
-from .return_video_sample_aspect_ratio import return_video_sample_aspect_ratio
+from .return_video_pixel_aspect_ratio import return_video_pixel_aspect_ratio
+from .return_video_source_aspect_ratio import return_video_source_aspect_ratio
 from .return_video_width import return_video_width
 from .yuv2rgb import yuv2rgb
