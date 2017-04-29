@@ -82,7 +82,7 @@ def return_video_source_aspect_ratio(fname, playlist = None):
                 break
 
         # Return scaled dimensions as source aspect ratio ...
-        return "{0:d}:{1:d}".format(stream[u"width"] / fact, stream[u"height"] / fact)
+        return u"{0:d}:{1:d}".format(stream[u"width"] / fact, stream[u"height"] / fact)
 
     # Return error ...
     return u"ERROR"
