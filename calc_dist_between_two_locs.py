@@ -6,6 +6,10 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     # NOTE: math.atan() has been replaced with math.atan2() where possible.
     # NOTE: "lambda" is a reserved word in Python so I use "lam" as my variable name.
 
+    # Skip if the start- and end-points are the same ...
+    if lon1_deg == lon2_deg and lat1_deg == lat2_deg:
+        return 0.0, 0.0, 0.0
+
     # Import modules ...
     import math
 
