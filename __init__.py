@@ -11,6 +11,7 @@ from .calc_dist_between_two_locs import calc_dist_between_two_locs
 from .calc_loc_from_loc_and_bearing_and_dist import calc_loc_from_loc_and_bearing_and_dist
 from .convert_bytes_to_pretty_bytes import convert_bytes_to_pretty_bytes
 from .convert_pretty_bytes_to_bytes import convert_pretty_bytes_to_bytes
+from .convert_spreadsheet_to_unix import convert_spreadsheet_to_unix
 from .does_media_have_RTP_hints import does_media_have_RTP_hints
 from .find_instances_of_a_file import find_instances_of_a_file
 from .find_integer_divisors import find_integer_divisors
