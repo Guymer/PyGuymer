@@ -21,7 +21,9 @@ from .find_program_version import find_program_version
 from .generate_password import generate_password
 from .generate_random_stub import generate_random_stub
 from .is_moov_at_beginning_of_MP4 import is_moov_at_beginning_of_MP4
+from .jpegtran import jpegtran
 from .make_path_safe import make_path_safe
+from .optipng import optipng
 from .paeth_filter import paeth_filter
 from .print_MP4_atoms import print_MP4_atoms
 from .remove_almost_empty_directories import remove_almost_empty_directories
