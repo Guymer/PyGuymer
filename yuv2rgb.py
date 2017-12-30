@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # NOTE: This function was obtained from a question on StackOverflow (see
-#       http://stackoverflow.com/q/7041172/4370547). The licence of this
-#       function is unknown but as of February 2017 the author, "wim" (see
+#       http://stackoverflow.com/q/7041172). The licence of this function is
+#       unknown but as of February 2017 the author, "wim" (see
 #       http://stackoverflow.com/users/674039/wim), says "Code included below,
 #       for future readers to use:". I have copied the code and use it for
 #       personal use only.
