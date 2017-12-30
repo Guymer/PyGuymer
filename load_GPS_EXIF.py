@@ -127,7 +127,7 @@ def load_GPS_EXIF(fname):
             # Estimate the time error ...
             # NOTE: The time precision is multiplied by the dilution of
             #       precision to give an estimate of the error
-            ans["time_err"] = datetime.timedelta(seconds = ans["dop"] * foo)
+            ans["time_err"] = datetime.timedelta(seconds = ans["dop"] * ans["time_prec"].total_seconds())
 
             # Make a pretty string ...
             ans["pretty"] = u"Photo taken at ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) ± {3:.1f}m on \"{4:s}\" ± {5:.3f}s.".format(
@@ -136,7 +136,7 @@ def load_GPS_EXIF(fname):
                 ans["alt"],
                 ans["loc_err"],
                 ans["datetime"].isoformat(" "),
-                ans["dop"] * foo
+                ans["time_err"].total_seconds()
             )
 
     # Return answer ...
