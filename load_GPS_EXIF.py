@@ -128,12 +128,12 @@ def load_GPS_EXIF(fname):
 
                 # Estimate the location error ...
                 # NOTE: The longitude and latitude precisions are added in
-                #       quadrature and then multiplied by the dilution of precision
-                #       to give an estimate of the error, in degrees. The error is
-                #       then divided by 360 to convert it to a fraction around a
-                #       circle. Assuming the Earth is a perfect sphere then the
-                #       fraction can be converted to a distance around its
-                #       circumference.
+                #       quadrature and then multiplied by the dilution of
+                #       precision to give an estimate of the error, in degrees.
+                #       The error is then divided by 360 to convert it to a
+                #       fraction around a circle. Assuming the Earth is a
+                #       perfect sphere then the fraction can be converted to a
+                #       distance around its circumference.
                 ans["loc_err"] = ans["dop"] * math.hypot(ans["lon_prec"], ans["lat_prec"])                                  # [deg]
                 ans["loc_err"] /= 360.0                                                                                     # [frac]
                 ans["loc_err"] *= 2.0 * math.pi * 6371009.0                                                                 # [m]
