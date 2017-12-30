@@ -164,6 +164,22 @@ def load_GPS_EXIF(fname):
                     )
                 else:
                     raise Exception("the mode is unexpected", ans["mode"])
+            else:
+                if ans["mode"] == "2D":
+                    # Make a pretty string ...
+                    ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) at \"{2:s}\".".format(
+                        ans["lon"],
+                        ans["lat"],
+                        ans["datetime"].isoformat(" "),
+                    )
+                elif ans["mode"] == "3D":
+                    # Make a pretty string ...
+                    ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) at \"{3:s}\".".format(
+                        ans["lon"],
+                        ans["lat"],
+                        ans["alt"],
+                        ans["datetime"].isoformat(" "),
+                    )
 
     # Return answer ...
     return ans
