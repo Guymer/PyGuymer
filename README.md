@@ -6,7 +6,9 @@ A Python module containing a bunch of random functions that I have written over 
 
 PyGuymer requires the following Python modules to be installed and available in your `PYTHONPATH`.
 
+* [exifread](https://pypi.python.org/pypi/ExifRead)
 * [numpy](https://pypi.python.org/pypi/numpy)
+* [pytz](https://pypi.python.org/pypi/pytz)
 
 ## Notes
 
