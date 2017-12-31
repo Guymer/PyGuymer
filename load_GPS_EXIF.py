@@ -158,47 +158,83 @@ def load_GPS_EXIF(fname):
                 #       precision to give an estimate of the error
                 ans["time_err"] = datetime.timedelta(seconds = ans["dop"] * ans["time_prec"].total_seconds())
 
-            # Check that there is location and date/time information ...
-            if "lon" in ans and "lat" in ans and "datetime" in ans:
-                # Check that there is altitude information ...
-                if "alt" in ans:
-                    # Check that there is error information ...
-                    if "loc_err" in ans and "time_err" in ans:
-                        # Make a pretty string ...
-                        ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) ± {3:.1f}m at \"{4:s}\" ± {5:.3f}s.".format(
-                            ans["lon"],
-                            ans["lat"],
-                            ans["alt"],
-                            ans["loc_err"],
-                            ans["datetime"].isoformat(" "),
-                            ans["time_err"].total_seconds()
-                        )
+            # Check that there is location information ...
+            if "lon" in ans and "lat" in ans:
+                # Check that there is date/time information ...
+                if "datetime" in ans:
+                    # Check that there is altitude information ...
+                    if "alt" in ans:
+                        # Check that there is error information ...
+                        if "loc_err" in ans and "time_err" in ans:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) ± {3:.1f}m at \"{4:s}\" ± {5:.3f}s.".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["alt"],
+                                ans["loc_err"],
+                                ans["datetime"].isoformat(" "),
+                                ans["time_err"].total_seconds()
+                            )
+                        else:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) at \"{3:s}\".".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["alt"],
+                                ans["datetime"].isoformat(" "),
+                            )
                     else:
-                        # Make a pretty string ...
-                        ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) at \"{3:s}\".".format(
-                            ans["lon"],
-                            ans["lat"],
-                            ans["alt"],
-                            ans["datetime"].isoformat(" "),
-                        )
+                        # Check that there is error information ...
+                        if "loc_err" in ans and "time_err" in ans:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) ± {2:.1f}m at \"{3:s}\" ± {4:.3f}s.".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["loc_err"],
+                                ans["datetime"].isoformat(" "),
+                                ans["time_err"].total_seconds()
+                            )
+                        else:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) at \"{2:s}\".".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["datetime"].isoformat(" "),
+                            )
                 else:
-                    # Check that there is error information ...
-                    if "loc_err" in ans and "time_err" in ans:
-                        # Make a pretty string ...
-                        ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) ± {2:.1f}m at \"{3:s}\" ± {4:.3f}s.".format(
-                            ans["lon"],
-                            ans["lat"],
-                            ans["loc_err"],
-                            ans["datetime"].isoformat(" "),
-                            ans["time_err"].total_seconds()
-                        )
+                    # Check that there is altitude information ...
+                    if "alt" in ans:
+                        # Check that there is error information ...
+                        if "loc_err" in ans:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL) ± {3:.1f}m.".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["alt"],
+                                ans["loc_err"]
+                            )
+                        else:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°, {2:.1f}m ASL).".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["alt"]
+                            )
                     else:
-                        # Make a pretty string ...
-                        ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) at \"{2:s}\".".format(
-                            ans["lon"],
-                            ans["lat"],
-                            ans["datetime"].isoformat(" "),
-                        )
+                        # Check that there is error information ...
+                        if "loc_err" in ans:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°) ± {2:.1f}m.".format(
+                                ans["lon"],
+                                ans["lat"],
+                                ans["loc_err"]
+                            )
+                        else:
+                            # Make a pretty string ...
+                            ans["pretty"] = u"GPS fix returned ({0:.6f}°, {1:.6f}°).".format(
+                                ans["lon"],
+                                ans["lat"]
+                            )
 
     # Return answer ...
     if ans == {}:
