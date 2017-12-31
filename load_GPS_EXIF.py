@@ -130,9 +130,9 @@ def load_GPS_EXIF(fname):
             if "GPS GPSMeasureMode" in tags:
                 # Extract measure mode ...
                 if tags["GPS GPSMeasureMode"].values[0] == "2":
-                    ans["mode"] = "2D"
+                    ans["mode"] = u"2D"
                 elif tags["GPS GPSMeasureMode"].values[0] == "3":
-                    ans["mode"] = "3D"
+                    ans["mode"] = u"3D"
                 else:
                     raise Exception("the mode is unexpected", tags["GPS GPSMeasureMode"].values)
 
