@@ -11,7 +11,7 @@ def add_map_background(axis, debug = False, name = u"natural-earth-1", resolutio
     # Check if the environment variable has been defined ...
     if u"CARTOPY_USER_BACKGROUNDS" in os.environ:
         # Determine JSON path and check it exists ...
-        jpath = os.path.join(os.environ[u"CARTOPY_USER_BACKGROUNDS"], "images.json")
+        jpath = os.path.join(os.environ[u"CARTOPY_USER_BACKGROUNDS"], u"images.json")
         if os.path.exists(jpath):
             # Load JSON and check keys exist ...
             info = json.load(open(jpath, "rt"))
@@ -25,9 +25,9 @@ def add_map_background(axis, debug = False, name = u"natural-earth-1", resolutio
     # Draw background image ...
     if default:
         if debug:
-            print "INFO: Drawing default background."
+            print u"INFO: Drawing default background."
         axis.stock_img()
     else:
         if debug:
-            print "INFO: Drawing user-requested background."
+            print u"INFO: Drawing user-requested background."
         axis.background_img(name = name, resolution = resolution)
