@@ -6,6 +6,7 @@ def return_file_list_with_warnings(path):
 
     # Load sub-functions ...
     from .make_path_safe import make_path_safe
+    from .return_file_list_with_warnings import return_file_list_with_warnings
 
     # Create empty list ...
     contents = []

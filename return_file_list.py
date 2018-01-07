@@ -4,6 +4,9 @@ def return_file_list(path):
     # Import modules ...
     import os
 
+    # Load sub-functions ...
+    from .return_file_list import return_file_list
+
     # Create empty list ...
     contents = []
 

@@ -4,6 +4,9 @@ def find_instances_of_a_file(path, basename):
     # Import modules ...
     import os
 
+    # Load sub-functions ...
+    from .find_instances_of_a_file import find_instances_of_a_file
+
     # Create empty list ...
     contents = []
 
