@@ -30,6 +30,7 @@ def save_array_as_image(img0, fname, form = "png", scale = False, pc_bot = 0.0, 
         open(
             os.path.join(
                 os.path.dirname(__file__),
+                u"data",
                 u"json",
                 u"colour_tables.json"
             ),
