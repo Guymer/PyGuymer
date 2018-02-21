@@ -27,6 +27,7 @@ from .load_GPS_EXIF import load_GPS_EXIF
 from .make_path_safe import make_path_safe
 from .optipng import optipng
 from .paeth_filter import paeth_filter
+from .parse_MPLS_file import parse_MPLS_file
 from .print_MP4_atoms import print_MP4_atoms
 from .remove_almost_empty_directories import remove_almost_empty_directories
 from .return_ISO_palette import return_ISO_palette
