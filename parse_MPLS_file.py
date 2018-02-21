@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def parse_MPLS_file(br, ip):
-    # NOTE: see https://github.com/lerks/BluRay/wiki
+    # NOTE: see https://github.com/lerks/BluRay/wiki/MPLS
     # NOTE: see https://en.wikibooks.org/wiki/User:Bdinfo/mpls
 
     # Import modules ...
