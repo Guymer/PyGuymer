@@ -22,19 +22,22 @@ def parse_MPLS_file(br, ip):
         info[u"AppInfoPlayList"] = res
 
         # Load PlayList section ...
-        fobj.seek(info[u"header"][u"PlayListStartAddress"], os.SEEK_SET)
-        res, length2 = pyguymer.MPLS.load_PlayList(fobj)
-        info[u"PlayList"] = res
+        if info[u"header"][u"PlayListStartAddress"] != 0:
+            fobj.seek(info[u"header"][u"PlayListStartAddress"], os.SEEK_SET)
+            res, length2 = pyguymer.MPLS.load_PlayList(fobj)
+            info[u"PlayList"] = res
 
         # Load PlayListMark section ...
-        fobj.seek(info[u"header"][u"PlayListMarkStartAddress"], os.SEEK_SET)
-        res, length3 = pyguymer.MPLS.load_PlayListMark(fobj)
-        info[u"PlayListMark"] = res
+        if info[u"header"][u"PlayListMarkStartAddress"] != 0:
+            fobj.seek(info[u"header"][u"PlayListMarkStartAddress"], os.SEEK_SET)
+            res, length3 = pyguymer.MPLS.load_PlayListMark(fobj)
+            info[u"PlayListMark"] = res
 
         # Load ExtensionData section ...
-        fobj.seek(info[u"header"][u"ExtensionDataStartAddress"], os.SEEK_SET)
-        res, length4 = pyguymer.MPLS.load_ExtensionData(fobj)
-        info[u"ExtensionData"] = res
+        if info[u"header"][u"ExtensionDataStartAddress"] != 0:
+            fobj.seek(info[u"header"][u"ExtensionDataStartAddress"], os.SEEK_SET)
+            res, length4 = pyguymer.MPLS.load_ExtensionData(fobj)
+            info[u"ExtensionData"] = res
 
     # Return answer ...
     return info
