@@ -46,3 +46,5 @@ Input #0, mpegts, from 'bluray:/path/to/br':
     Stream #0:22[0x1a00]: Audio: eac3 ([161][0][0][0] / 0x00A1), 48000 Hz, stereo, fltp, 192 kb/s
     Stream #0:23[0x1b00]: Video: h264 (High) (HDMV / 0x564D4448), yuv420p(progressive), 720x480 [SAR 40:33 DAR 20:11], 23.98 fps, 23.98 tbr, 90k tbn, 47.95 tbc
 ```
+
+The Blu-ray itself has language information and opening the tiny binary file `00820.mpls` in a text editor shows strings such as `eng` and `spa` amongst all the gibberish. I decided that instead of writing feature requests in both [ffmpeg](https://www.ffmpeg.org/) and [libbluray](https://www.videolan.org/developers/libbluray.html) it would be *much* quicker to code up a binary reader for the file and add its data to the data provided by `ffprobe ...`.
