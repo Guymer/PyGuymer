@@ -12,7 +12,7 @@ def load_StreamEntry(fobj, length2, length2a, length2b):
 
     # Read the binary data ...
     ans = {}
-    ans[u"Length"], = struct.unpack(u">B", fobj.read(1));                                                               length2 += 1; length2a += 1; length2b += 1; length2c = 0
+    ans[u"Length"], = struct.unpack(u">B", fobj.read(1));                                                               length2 += 1; length2a += 1; length2b += 1
     if ans[u"Length"] != 0:
         ans[u"StreamType"], = struct.unpack(u">B", fobj.read(1));                                                       length2 += 1; length2a += 1; length2b += 1; length2c += 1
         if ans[u"StreamType"] == int(0x01):
