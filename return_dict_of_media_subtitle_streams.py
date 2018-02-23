@@ -79,7 +79,7 @@ def return_dict_of_media_subtitle_streams(fname, playlist = None):
             continue
 
         # Append information ...
-        ans[stream[u"id"]] = stream
+        ans[str(stream[u"index"])] = stream
 
     # Return dictionary ...
     return ans
