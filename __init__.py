@@ -14,6 +14,11 @@ from .convert_bytes_to_pretty_bytes import convert_bytes_to_pretty_bytes
 from .convert_pretty_bytes_to_bytes import convert_pretty_bytes_to_bytes
 from .convert_spreadsheet_to_unix import convert_spreadsheet_to_unix
 from .does_media_have_RTP_hints import does_media_have_RTP_hints
+from .download import download
+from .download_file import download_file
+from .download_header import download_header
+from .download_stream import download_stream
+from .download_text import download_text
 from .find_instances_of_a_file import find_instances_of_a_file
 from .find_integer_divisors import find_integer_divisors
 from .find_middle_of_great_circle import find_middle_of_great_circle
