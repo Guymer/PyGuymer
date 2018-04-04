@@ -9,6 +9,7 @@ PyGuymer requires the following Python modules to be installed and available in 
 * [exifread](https://pypi.python.org/pypi/ExifRead)
 * [numpy](https://pypi.python.org/pypi/numpy)
 * [pytz](https://pypi.python.org/pypi/pytz)
+* [requests](https://pypi.python.org/pypi/requests)
 
 ## Notes
 
