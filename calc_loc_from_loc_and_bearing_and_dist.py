@@ -38,10 +38,11 @@ def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
     while True:
         # Stop looping if the function has been called too many times ...
         if i >= 1000:
+            print "WARNING: calc_loc_from_loc_and_bearing_and_dist() failed to converge"
             break
 
         # Find new value of sigma and increment counter ...
-        two_sigma_m = 2 * sigma1 + sigma
+        two_sigma_m = 2.0 * sigma1 + sigma
         delta_sigma = bigB * math.sin(sigma) * (math.cos(two_sigma_m) + 0.25 * bigB * (math.cos(sigma) * (2.0 * math.cos(two_sigma_m) ** 2 - 1.0) - bigB * math.cos(two_sigma_m) * (4.0 * math.sin(sigma) ** 2 - 3.0) * (4.0 * math.cos(two_sigma_m) ** 2 - 3.0) / 6.0))
         sigmaNew = s_m / (b * bigA) + delta_sigma
         i += 1
