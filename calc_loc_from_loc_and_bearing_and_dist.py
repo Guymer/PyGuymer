@@ -2,6 +2,7 @@
 
 def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
     # NOTE: https://en.wikipedia.org/wiki/Vincenty%27s_formulae
+    # NOTE: https://www.movable-type.co.uk/scripts/latlong-vincenty.html
     # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
     # NOTE: math.atan() has been replaced with math.atan2() where possible.
     # NOTE: "lambda" is a reserved word in Python so I use "lam" as my variable name.
@@ -37,9 +38,8 @@ def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
     # Start infinite loop ...
     while True:
         # Stop looping if the function has been called too many times ...
-        if i >= 1000:
-            print "WARNING: calc_loc_from_loc_and_bearing_and_dist() failed to converge"
-            break
+        if i >= 100:
+            raise Exception("failed to converge")
 
         # Find new value of sigma and increment counter ...
         two_sigma_m = 2.0 * sigma1 + sigma
@@ -68,11 +68,12 @@ def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
         math.cos(u1) * math.cos(sigma) - math.sin(u1) * math.sin(sigma) * math.cos(alpha1)
     )
     l = lam - (1.0 - c) * f * sin_alpha * (sigma + c * math.sin(sigma) * (math.cos(two_sigma_m) + c * math.cos(sigma) * (2.0 * math.cos(two_sigma_m) ** 2 - 1.0)))
-    lon2 = l + lon1
+    lon2 = (l + lon1 + 3.0 * math.pi) % (2.0 * math.pi) - math.pi               # NOTE: Normalize to -180 <--> +180
     alpha2 = math.atan2(
         sin_alpha,
         math.cos(u1) * math.cos(sigma) * math.cos(alpha1) - math.sin(u1) * math.sin(sigma)
     )
+    alpha2 = (alpha2 + 2.0 * math.pi) % (2.0 * math.pi)                         # NOTE: Normalize to +0 <--> +360
 
     # Return end point and forward azimuth ...
     return math.degrees(lon2), math.degrees(lat2), math.degrees(alpha2)

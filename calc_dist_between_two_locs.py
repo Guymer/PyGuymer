@@ -2,6 +2,7 @@
 
 def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     # NOTE: https://en.wikipedia.org/wiki/Vincenty%27s_formulae
+    # NOTE: https://www.movable-type.co.uk/scripts/latlong-vincenty.html
     # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
     # NOTE: math.atan() has been replaced with math.atan2() where possible.
     # NOTE: "lambda" is a reserved word in Python so I use "lam" as my variable name.
@@ -34,14 +35,17 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     # Start infinite loop ...
     while True:
         # Stop looping if the function has been called too many times ...
-        if i >= 1000:
-            break
+        if i >= 100:
+            raise Exception("failed to converge")
 
         # Calculate new lambda and increment counter ...
         sin_sigma = math.hypot(
             math.cos(u2) * math.sin(lam),
             math.cos(u1) * math.sin(u2) - math.sin(u1) * math.cos(u2) * math.cos(lam)
         )
+        if sin_sigma == 0.0:
+            # NOTE: co-incident points
+            return 0.0, 0.0, 0.0
         cos_sigma = math.sin(u1) * math.sin(u2) + math.cos(u1) * math.cos(u2) * math.cos(lam)
         sigma = math.atan2(
             sin_sigma,
@@ -50,6 +54,9 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
         sin_alpha = math.cos(u1) * math.cos(u2) * math.sin(lam) / sin_sigma
         cosSq_alpha = 1.0 - sin_alpha ** 2
         cos_two_sigma_m = cos_sigma - 2.0 * math.sin(u1) * math.sin(u2) / cosSq_alpha
+        if math.isnan(cos_two_sigma_m):
+            # NOTE: equatorial line
+            cos_two_sigma_m = 0.0
         c = f * cosSq_alpha * (4.0 + f * (4.0 - 3.0 * cosSq_alpha)) / 16.0
         lamNew = l + (1.0 - c) * f * sin_alpha * (sigma + c * sin_sigma * (cos_two_sigma_m + c * cos_sigma * (2.0 * cos_two_sigma_m ** 2 - 1.0)))
         i += 1
@@ -76,6 +83,8 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
         math.cos(u1) * math.sin(lam),
         math.sin(u1) * math.cos(u2) - math.cos(u1) * math.sin(u2) * math.cos(lam)
     )
+    alpha1 = (alpha1 + 2.0 * math.pi) % (2.0 * math.pi)                         # NOTE: Normalize to +0 <--> +360
+    alpha2 = (alpha2 + 2.0 * math.pi) % (2.0 * math.pi)                         # NOTE: Normalize to +0 <--> +360
 
     # Return distance and forward azimuths ...
     return s, math.degrees(alpha1), math.degrees(alpha2)
