@@ -7,6 +7,8 @@ the years.
 
 # Load sub-functions ...
 from .add_map_background import add_map_background
+from .buffer_point import buffer_point
+from .buffer_polygon import buffer_polygon
 from .calc_angle_between_two_locs import calc_angle_between_two_locs
 from .calc_dist_between_two_locs import calc_dist_between_two_locs
 from .calc_loc_from_loc_and_bearing_and_dist import calc_loc_from_loc_and_bearing_and_dist
@@ -26,6 +28,7 @@ from .find_point_on_great_circle import find_point_on_great_circle
 from .find_program_version import find_program_version
 from .generate_password import generate_password
 from .generate_random_stub import generate_random_stub
+from .interpolate import interpolate
 from .is_moov_at_beginning_of_MP4 import is_moov_at_beginning_of_MP4
 from .jpegtran import jpegtran
 from .load_GPS_EXIF import load_GPS_EXIF
