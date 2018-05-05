@@ -10,6 +10,7 @@ PyGuymer requires the following Python modules to be installed and available in 
 * [numpy](https://pypi.python.org/pypi/numpy)
 * [pytz](https://pypi.python.org/pypi/pytz)
 * [requests](https://pypi.python.org/pypi/requests)
+* [shapely](https://pypi.python.org/pypi/shapely)
 
 ## Notes
 
