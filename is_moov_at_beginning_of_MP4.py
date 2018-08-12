@@ -8,9 +8,9 @@ def is_moov_at_beginning_of_MP4(fname = "missing"):
     #         * https://wiki.multimedia.cx/index.php/QuickTime_container
 
     # Import modules ...
-    import numpy
     import os
     import re
+    import struct
 
     # Open MP4 read-only ...
     with open(fname, "rb") as fobj:
@@ -20,12 +20,10 @@ def is_moov_at_beginning_of_MP4(fname = "missing"):
         foundMOOV = False
 
         # Loop over entire contents of MP4 ...
-        while True:
-            # Attempt to read 4 bytes as a big-endian un-signed 32 bit integer and stop looping if it failed ...
-            arr = numpy.fromstring(fobj.read(4), dtype = numpy.uint32).byteswap()
+        while fobj.tell() < os.path.getsize(fname):
+            # Attempt to read 4 bytes as a big-endian un-signed 32 bit integer ...
+            val, = struct.unpack(u">I", fobj.read(4))                           # [B]
             off = 4
-            if arr.size != 1:
-                break
 
             # Extract atom name ...
             name = fobj.read(4)
@@ -54,22 +52,20 @@ def is_moov_at_beginning_of_MP4(fname = "missing"):
                     return True
 
             # Check the length ...
-            if arr[0] == 0:
+            if val == 0:
                 # NOTE: This atom runs until EOF.
 
                 # Stop looping ...
                 break
-            elif arr[0] == 1:
+            elif val == 1:
                 # NOTE: This atom has 64-bit sizes.
 
                 # Attempt to read 8 bytes as a big-endian un-signed 64 bit integer ...
-                arr = numpy.fromstring(fobj.read(8), dtype = numpy.uint64).byteswap()
+                val, = struct.unpack(u">Q", fobj.read(8))                       # [B]
                 off += 8
-                if arr.size != 1:
-                    raise Exception(u"failed to read 64-bit size in \"{0:s}\"".format(fname))
 
             # Skip to the end of the atom ...
-            fobj.seek(arr[0] - off, os.SEEK_CUR)
+            fobj.seek(val - off, os.SEEK_CUR)
 
     # Catch possible errors ...
     if not foundMDAT:
