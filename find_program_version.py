@@ -29,7 +29,7 @@ def find_program_version(prog = "python"):
         )
         stdout, stderr = proc.communicate()
         if proc.returncode != 0:
-            raise Exception(u"\"pkg\" command failed")
+            raise Exception("\"pkg\" command failed")
     else:
         # Check if it is MacPorts ...
         proc = subprocess.Popen(
@@ -55,7 +55,7 @@ def find_program_version(prog = "python"):
             )
             stdout, stderr = proc.communicate()
             if proc.returncode != 0:
-                raise Exception(u"\"port\" command failed")
+                raise Exception("\"port\" command failed")
         else:
             # Check if it is OpenSUSE ...
             proc = subprocess.Popen(
@@ -81,13 +81,16 @@ def find_program_version(prog = "python"):
                 )
                 stdout, stderr = proc.communicate()
                 if proc.returncode != 0:
-                    raise Exception(u"\"zypper\" command failed")
+                    raise Exception("\"zypper\" command failed")
             else:
-                raise Exception(u"neither \"pkg\" nor \"port\" nor \"zypper\" have been found")
+                raise Exception("neither \"pkg\" nor \"port\" nor \"zypper\" have been found")
 
     # Find clean string ...
-    for line in stdout.splitlines():
+    for line in stdout.decode("utf-8").splitlines():
         match = re.match(r"^[Vv][Ee][Rr][Ss][Ii][Oo][Nn].+$", line)
         if match is None:
             continue
         return match.group(0).split(":")[1].strip()
+
+    # Create final catch-all ...
+    raise Exception("failed to extract version number for {0:s}".format(prog))
