@@ -7,6 +7,7 @@ the years.
 
 # Load sub-functions ...
 from .add_map_background import add_map_background
+from .buffer_multipolygon import buffer_multipolygon
 from .buffer_point import buffer_point
 from .buffer_points import buffer_points
 from .buffer_polygon import buffer_polygon
