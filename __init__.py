@@ -8,6 +8,7 @@ the years.
 # Load sub-functions ...
 from .add_map_background import add_map_background
 from .buffer_point import buffer_point
+from .buffer_points import buffer_points
 from .buffer_polygon import buffer_polygon
 from .calc_angle_between_two_locs import calc_angle_between_two_locs
 from .calc_dist_between_two_locs import calc_dist_between_two_locs
