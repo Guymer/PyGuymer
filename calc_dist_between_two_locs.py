@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
+def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg, nmax = 100, eps = 1.0e-12):
+    """
+    This function reads in two coordinates (in degrees) on the surface of Earth
+    and calculates the distance (in metres) between them and the headings (in
+    degrees) from each coordinate to the other one.
+    """
+
     # NOTE: https://en.wikipedia.org/wiki/Vincenty%27s_formulae
     # NOTE: https://www.movable-type.co.uk/scripts/latlong-vincenty.html
-    # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
-    # NOTE: math.atan() has been replaced with math.atan2() where possible.
     # NOTE: "lambda" is a reserved word in Python so I use "lam" as my variable name.
 
     # Skip if the start- and end-points are the same ...
@@ -35,7 +39,7 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     # Start infinite loop ...
     while True:
         # Stop looping if the function has been called too many times ...
-        if i >= 100:
+        if i >= nmax:
             raise Exception("failed to converge")
 
         # Calculate new lambda and increment counter ...
@@ -63,7 +67,7 @@ def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
 
         # Only check the solution after at least 3 function calls ...
         if i >= 3:
-            if abs(lamNew - lam) / abs(lamNew) <= 1.0e-12:
+            if abs(lamNew - lam) / abs(lamNew) <= eps:
                 break
 
         # Replace old lambda with new lambda ...

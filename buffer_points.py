@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
 def buffer_points(points, dist, nang = 19, simp = 0.1, debug = False):
+    """
+    This function reads in a list of (lon,lat)-tuples representing coordinates
+    (in degrees) that exist on the surface of the Earth and returns a
+    [Multi]Polygon of them buffered by a constant distance (in metres).
+    """
+
     # Import modules ...
     import multiprocessing
     import shapely
@@ -18,7 +24,7 @@ def buffer_points(points, dist, nang = 19, simp = 0.1, debug = False):
     # Create pool of workers and create empty lists ...
     pool = multiprocessing.Pool()
     results = []
-    zones = []
+    buffs = []
 
     # Loop over points in points list and add buffer job to worker pool...
     for point in points:
@@ -26,16 +32,16 @@ def buffer_points(points, dist, nang = 19, simp = 0.1, debug = False):
 
     # Loop over parallel jobs and append simplified results to list ...
     for result in results:
-        zones.append(result.get().simplify(simp))
+        buffs.append(result.get().simplify(simp))
 
     # Destroy pool of workers ...
     pool.close()
     pool.join()
 
     # Convert list to (unified) Polygon and check it ...
-    zones = shapely.ops.unary_union(zones)
-    if not zones.is_valid:
-        raise Exception("\"zones\" is not a valid Polygon ({0:s})".format(shapely.validation.explain_validity(zones)))
+    buffs = shapely.ops.unary_union(buffs)
+    if not buffs.is_valid:
+        raise Exception("\"buffs\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(buffs)))
 
     # Return answer ...
-    return zones
+    return buffs

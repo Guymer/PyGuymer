@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
 def buffer_polygon(poly, dist, nang = 19, simp = 0.1, debug = False):
+    """
+    This function reads in a Polygon (with an exterior and any number of
+    interiors) that exists on the surface of the Earth and returns the same
+    [Multi]Polygon buffered by a constant distance (in metres).
+    """
+
     # Import modules ...
     import multiprocessing
     import shapely
@@ -21,8 +27,8 @@ def buffer_polygon(poly, dist, nang = 19, simp = 0.1, debug = False):
     # Create pool of workers, create empty lists and append initial Polygon ...
     pool = multiprocessing.Pool()
     results = []
-    zones = []
-    zones.append(poly)
+    buff = []
+    buff.append(poly)
 
     # Loop over coordinates in initial Polygon and add buffer job to worker pool...
     for coord in poly.exterior.coords:
@@ -33,16 +39,16 @@ def buffer_polygon(poly, dist, nang = 19, simp = 0.1, debug = False):
 
     # Loop over parallel jobs and append simplified results to list ...
     for result in results:
-        zones.append(result.get().simplify(simp))
+        buff.append(result.get().simplify(simp))
 
     # Destroy pool of workers ...
     pool.close()
     pool.join()
 
     # Convert list to (unified) Polygon and check it ...
-    zones = shapely.ops.unary_union(zones)
-    if not zones.is_valid:
-        raise Exception("\"zones\" is not a valid Polygon ({0:s})".format(shapely.validation.explain_validity(zones)))
+    buff = shapely.ops.unary_union(buff)
+    if not buff.is_valid:
+        raise Exception("\"buff\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(buff)))
 
     # Return answer ...
-    return zones
+    return buff

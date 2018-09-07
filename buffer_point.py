@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
 def buffer_point(lon1, lat1, dist, nang = 19, debug = False):
+    """
+    This function reads in coordinates (in degrees) that exist on the surface of
+    the Earth and returns a [Multi]Polygon of it buffered by a constant distance
+    (in metres).
+    """
+
     # Import modules ...
     import copy
     import math
@@ -139,14 +145,14 @@ def buffer_point(lon1, lat1, dist, nang = 19, debug = False):
         tmp = shapely.geometry.polygon.Polygon(part1)
         if not tmp.is_valid:
             if debug:
-                print "DEBUG: \"tmp\" is not a valid Polygon ({0:s})".format(shapely.validation.explain_validity(tmp))
+                print "DEBUG: \"tmp\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(tmp))
         else:
             ans.append(tmp)
     if len(set(part2)) >= 3:
         tmp = shapely.geometry.polygon.Polygon(part2)
         if not tmp.is_valid:
             if debug:
-                print "DEBUG: \"tmp\" is not a valid Polygon ({0:s})".format(shapely.validation.explain_validity(tmp))
+                print "DEBUG: \"tmp\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(tmp))
         else:
             ans.append(tmp)
 
@@ -155,7 +161,7 @@ def buffer_point(lon1, lat1, dist, nang = 19, debug = False):
 
     # Check MultiPolygon ...
     if not ans.is_valid:
-        raise Exception("\"ans\" is not a valid MultiPolygon ({0:s})".format(shapely.validation.explain_validity(ans)))
+        raise Exception("\"ans\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(ans)))
 
     # Return answer ...
     return ans

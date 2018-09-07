@@ -23,12 +23,12 @@ def simplify_poly(poly1, simp = 0.1):
         # Add simplified copy to the list ...
         poly2.append(poly1.simplify(simp))
     else:
-        raise TypeError("\"poly1\" is not a Polygon or a MultiPolygon")
+        raise TypeError("\"poly1\" is an unexpected type")
 
     # Convert list to MultiPolygon ...
     poly2 = shapely.geometry.multipolygon.MultiPolygon(poly2)
     if not poly2.is_valid:
-        raise Exception("\"poly2\" is not a valid MultiPolygon ({0:s})".format(shapely.validation.explain_validity(poly2)))
+        raise Exception("\"poly2\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(poly2)))
 
     # Return answer ...
     return poly2

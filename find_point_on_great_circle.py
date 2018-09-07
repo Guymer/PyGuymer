@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
-def find_point_on_great_circle(frac = 0.0, lon1_deg = 0.0, lat1_deg = 0.0, lon2_deg = 0.0, lat2_deg = 0.0):
-    # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
-    # NOTE: math.atan() has been replaced with math.atan2() where possible.
+def find_point_on_great_circle(frac, lon1_deg, lat1_deg, lon2_deg, lat2_deg):
+    """
+    This function reads in two coordinates (in degrees) on the surface of a
+    sphere and calculates the coordinates (in degrees) of an arbitrary point on
+    the great circle that connects them.
+    """
 
     # Import modules ...
     import math

@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
-def buffer_multipolygon(geoms, dist, nang = 19, simp = 0.1, debug = False):
+def buffer_multipolygon(multipoly, dist, nang = 19, simp = 0.1, debug = False):
+    """
+    This function reads in a MultiPolygon, made up of Polygons (with an exterior
+    and any number of interiors), that exists on the surface of the Earth and
+    returns the same [Multi]Polygon buffered by a constant distance (in metres).
+    """
+
     # Import modules ...
     import shapely
     import shapely.geometry
@@ -11,18 +17,18 @@ def buffer_multipolygon(geoms, dist, nang = 19, simp = 0.1, debug = False):
     from .buffer_polygon import buffer_polygon
 
     # Check argument ...
-    if not isinstance(geoms, shapely.geometry.multipolygon.MultiPolygon):
-        raise TypeError("\"geoms\" is not a MultiPolygon")
-    if not geoms.is_valid:
-        raise Exception("\"geoms\" is not a valid MultiPolygon ({0:s})".format(shapely.validation.explain_validity(geoms)))
+    if not isinstance(multipoly, shapely.geometry.multipolygon.MultiPolygon):
+        raise TypeError("\"multipoly\" is not a MultiPolygon")
+    if not multipoly.is_valid:
+        raise Exception("\"multipoly\" is not a valid MultiPolygon ({0:s})".format(shapely.validation.explain_validity(multipoly)))
 
     # Create empty list ...
     buffs = []
 
     # Loop over Polygons ...
-    for geom in geoms.geoms:
+    for poly in multipoly.geoms:
         # Buffer Polygon ...
-        buff = buffer_polygon(geom, dist, nang, simp, debug)
+        buff = buffer_polygon(poly, dist, nang, simp, debug)
 
         # Check how many polygons describe the buffer and append them to the list ...
         if isinstance(buff, shapely.geometry.multipolygon.MultiPolygon):
@@ -48,7 +54,7 @@ def buffer_multipolygon(geoms, dist, nang = 19, simp = 0.1, debug = False):
     # Convert list to (unified) Polygon and check it ...
     buffs = shapely.ops.unary_union(buffs)
     if not buffs.is_valid:
-        raise Exception("\"buffs\" is not valid")
+        raise Exception("\"buffs\" is not a valid [Multi]Polygon ({0:s})".format(shapely.validation.explain_validity(buffs)))
 
     # Return answer ...
     return buffs

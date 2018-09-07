@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
+def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m, nmax = 100, eps = 1.0e-12):
+    """
+    This function reads in coordinates (in degrees) on the surface of Earth
+    and a heading (in degrees) and a distance (in metres) it then calculates the
+    coordinates (in degrees) that are at the end of the vector.
+    """
+
     # NOTE: https://en.wikipedia.org/wiki/Vincenty%27s_formulae
     # NOTE: https://www.movable-type.co.uk/scripts/latlong-vincenty.html
-    # NOTE: math.sqrt() has been replaced with math.hypot() where possible.
-    # NOTE: math.atan() has been replaced with math.atan2() where possible.
     # NOTE: "lambda" is a reserved word in Python so I use "lam" as my variable name.
 
     # Import modules ...
@@ -38,7 +42,7 @@ def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
     # Start infinite loop ...
     while True:
         # Stop looping if the function has been called too many times ...
-        if i >= 100:
+        if i >= nmax:
             raise Exception("failed to converge")
 
         # Find new value of sigma and increment counter ...
@@ -49,7 +53,7 @@ def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m):
 
         # Only check the solution after at least 3 function calls ...
         if i >= 3:
-            if abs(sigmaNew - sigma) / abs(sigmaNew) <= 1.0e-12:
+            if abs(sigmaNew - sigma) / abs(sigmaNew) <= eps:
                 break
 
         # Replace old sigma with new sigma ...
