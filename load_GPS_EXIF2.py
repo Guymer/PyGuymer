@@ -5,6 +5,7 @@ def load_GPS_EXIF2(fname):
 
     # Import modules ...
     import datetime
+    import json
     import math
     import pytz
     import subprocess
