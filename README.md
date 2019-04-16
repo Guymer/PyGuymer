@@ -1,6 +1,6 @@
 # PyGuymer
 
-A Python module containing a bunch of random functions that I have written over the years.
+A Python 2.X module containing a bunch of random functions that I have written over the years. There is a [Python 3.X port available](https://github.com/Guymer/PyGuymer3) if you want.
 
 ## Dependencies
 
@@ -19,7 +19,3 @@ PyGuymer requires the following Python modules to be installed and available in 
 ```python
 import this
 ```
-
-### Future porting to Python 3
-
-Read this good [StackOverflow answer](http://stackoverflow.com/a/21384492) describing type-checking which also provides a quick summary on [PEP 484](https://www.python.org/dev/peps/pep-0484/) and [PEP 3107](https://www.python.org/dev/peps/pep-3107/).
