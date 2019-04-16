@@ -2,7 +2,6 @@
 
 def download_file(sess, url, fname):
     # Import modules ...
-    import datetime
     import email.utils
     import os
 
