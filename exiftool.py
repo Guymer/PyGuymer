@@ -1,36 +1,36 @@
 # -*- coding: utf-8 -*-
 
-def optipng(fname):
+def exiftool(fname):
     # Import modules ...
     import os
     import subprocess
 
-    # Check that "optipng" is installed ...
+    # Check that "exiftool" is installed ...
     try:
         subprocess.check_call(
             [
                 u"type",
-                u"optipng"
+                u"exiftool"
             ],
             stdout = open(os.devnull, "wt"),
             stderr = open(os.devnull, "wt")
         )
     except subprocess.CalledProcessError:
-        raise Exception(u"\"optipng\" is not installed")
+        raise Exception(u"\"exiftool\" is not installed")
 
     # Check that the image exists ...
     if not os.path.exists(fname):
         raise Exception(u"\"{:s}\" does not exist".format(fname))
 
-    # Optimise PNG ...
+    # Strip all metadata ...
     try:
         subprocess.check_call(
             [
-                u"optipng",
+                u"exiftool",
                 fname
             ],
             stdout = open(os.devnull, "wt"),
             stderr = open(os.devnull, "wt")
         )
     except subprocess.CalledProcessError:
-        raise Exception(u"\"optipng\" failed")
+        raise Exception(u"\"exiftool\" failed")
