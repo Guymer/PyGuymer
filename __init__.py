@@ -77,3 +77,6 @@ from .yuv2rgb import yuv2rgb
 # Ensure that this module is only imported by Python 2.x ...
 if sys.version_info.major != 2:
     raise Exception("the Python module \"pyguymer\" must only be used with Python 2.x, if you want a Python 3.x version then use \"pyguymer3\" instead")
+
+# Raise deprecation warning ...
+raise FutureWarning("Python 2.x is deprecated; if you want a Python 3.x version then use \"pyguymer3\" instead")
