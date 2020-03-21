@@ -25,7 +25,8 @@ def return_dict_of_ISO_audio_streams(fname, usr_track = -1):
         raise Exception(u"\"lsdvd\" command failed")
 
     # Clean up ...
-    # NOTE: "lsdvd" sometimes returns invalid XML as it does not: escape characters; or remove invalid characters.
+    # NOTE: "lsdvd" sometimes returns invalid XML as it does not: escape
+    #       characters; or remove invalid characters.
     stdout = unicode(stdout, "utf-8", "ignore").replace(u"&", u"&amp;")
 
     # Loop over all tracks ...

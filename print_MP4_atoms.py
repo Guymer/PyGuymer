@@ -52,7 +52,8 @@ def print_MP4_atoms(fname = "missing"):
             elif val == 1:
                 # NOTE: This atom has 64-bit sizes.
 
-                # Attempt to read 8 bytes as a big-endian un-signed 64 bit integer ...
+                # Attempt to read 8 bytes as a big-endian un-signed 64 bit
+                # integer ...
                 val, = struct.unpack(u">Q", fobj.read(8))                       # [B]
                 off += 8
 

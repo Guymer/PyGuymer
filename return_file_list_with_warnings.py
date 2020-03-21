@@ -18,7 +18,8 @@ def return_file_list_with_warnings(path):
             # Make file name ...
             item = os.path.join(path, child)
 
-            # Test if this part is illegal and print the full path for identification ...
+            # Test if this part is illegal and print the full path for
+            # identification ...
             if not child.startswith(u".") and child != make_path_safe(child):
                 print u"\"{0:s}\" is illegal".format(item)
 
