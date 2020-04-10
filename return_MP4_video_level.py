@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/return_MP4_video_level.py                  #
+##############################################################################################
+
 def return_MP4_video_level(fname):
     # Import modules ...
     import json

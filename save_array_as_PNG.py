@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/save_array_as_PNG.py                       #
+##############################################################################################
+
 def save_array_as_PNG(img, fname, ftype_req = -1):
     """
     Save an array as a PNG.

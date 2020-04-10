@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/find_middle_of_great_circle.py             #
+##############################################################################################
+
 def find_middle_of_great_circle(lon1_deg, lat1_deg, lon2_deg, lat2_deg):
     """
     This function reads in two coordinates (in degrees) on the surface of a

@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/remove_almost_empty_directories.py         #
+##############################################################################################
+
 def remove_almost_empty_directories(path):
     # Import modules ...
     import os

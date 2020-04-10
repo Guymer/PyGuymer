@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/yuv2rgb.py                                 #
+##############################################################################################
+
 # NOTE: This function was obtained from a question on StackOverflow (see
 #       http://stackoverflow.com/q/7041172). The licence of this function is
 #       unknown but as of February 2017 the author, "wim" (see

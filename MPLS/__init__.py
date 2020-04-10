@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/MPLS/__init__.py                           #
+##############################################################################################
+
 # Load sub-functions ...
 from .load_AppInfoPlayList import load_AppInfoPlayList
 from .load_ExtensionData import load_ExtensionData

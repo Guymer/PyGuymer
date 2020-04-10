@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/calc_loc_from_loc_and_bearing_and_dist.py  #
+##############################################################################################
+
 def calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, alpha1_deg, s_m, nmax = 100, eps = 1.0e-12):
     """
     This function reads in coordinates (in degrees) on the surface of Earth

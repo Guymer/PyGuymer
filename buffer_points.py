@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/buffer_points.py                           #
+##############################################################################################
+
 def buffer_points(points, dist, nang = 19, simp = 0.1, debug = False):
     """
     This function reads in a list of (lon,lat)-tuples representing coordinates

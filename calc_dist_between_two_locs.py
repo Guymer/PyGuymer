@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+##############################################################################################
+#                  This file is deprecated because Python 2.x is deprecated                  #
+#                     A Python 3.x version of this file can be found at:                     #
+#                                                                                            #
+# https://github.com/Guymer/PyGuymer3/blob/master/calc_dist_between_two_locs.py              #
+##############################################################################################
+
 def calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg, nmax = 100, eps = 1.0e-12):
     """
     This function reads in two coordinates (in degrees) on the surface of Earth
