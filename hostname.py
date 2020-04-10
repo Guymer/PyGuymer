@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 def hostname():
     # Import standard modules ...
     import socket
